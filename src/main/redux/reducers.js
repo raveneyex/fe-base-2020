@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import appReducer from '../components/App/appReducer';
+import appReducer from '../components/app/appReducer';
 
 export default function createRootReducer(history) {
   return combineReducers({

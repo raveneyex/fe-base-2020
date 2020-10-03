@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router';
-import AppContainer from '../components/App/AppContainer';
+import AppContainer from '../components/app/AppContainer';
 
 const routes = (
   <div className="main">
