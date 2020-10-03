@@ -13,7 +13,7 @@ export default function App(props) {
 
   return (
     <>
-      <div>{ message }</div>
+      <div className="message">{ message }</div>
       <button onClick={() => changeMessage()}>Change Message</button>
       <button onClick={() => resetMessage()}>Reset Message</button>
     </>
