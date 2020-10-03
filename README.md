@@ -5,14 +5,11 @@ A simple front-end base project using my preferred stack as of 2020.
 ## Stack
 
 * Webpack 4
-* Babel 6
-* React
-* Redux
+* Babel 7
+* React 16
+* Redux 4
 * Scss
 
 ## ToDo:
-* Migrate to Babel7
 * Add License Headers
 * Add Tests infrastructure
-
-

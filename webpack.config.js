@@ -8,8 +8,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const transformObjectRestSpread = require('babel-plugin-transform-object-rest-spread');
-const transformJsx = require('babel-plugin-transform-react-jsx');
 
 // Output config
 const output = {
@@ -30,7 +28,7 @@ const devServer = {
 const plugins = [
   new HtmlWebpackPlugin({ template: 'index.html' }),
   new CleanWebpackPlugin(),
-  new MiniCssExtractPlugin({ filename: 'index.scss' }),
+  new MiniCssExtractPlugin({ filename: 'index.css' }),
 ];
 
 // File-loader config
@@ -47,22 +45,29 @@ const fileLoaderRule = {
 };
 
 const sassLoadersRule = {
-  test: /\.scss$/,
+  test: /\.s?css$/,
   exclude: /node_modules/,
-  use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader']
+  use: [
+    'style-loader',
+    MiniCssExtractPlugin.loader,
+    'css-loader', 
+    {
+      loader: 'sass-loader',
+      options: {
+        sourceMap: true
+      }
+    },
+    'postcss-loader'
+  ]
 };
 
 const jsLoaderRule = {
-  test: /\.(js|jsx)$/,
+  test: /\.jsx?$/,
   exclude: /node_modules/,
   use: {
     loader: 'babel-loader',
     options: {
-      presets: ['env', 'stage-0', 'react'],
-      plugins: [
-        transformObjectRestSpread,
-        transformJsx
-      ]
+      presets: ['@babel/preset-env', '@babel/preset-react']
     }
   }
 };
@@ -71,16 +76,19 @@ const jsLoaderRule = {
 const rules = [fileLoaderRule, sassLoadersRule, jsLoaderRule];
 
 // Config object
-module.exports = {
-  context: path.resolve(__dirname, 'src/main'),
-  entry: './index.js',
-  output,
-  plugins,
-  devServer,
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
-  module: {
-    rules
-  }
+module.exports = function(env = { production: false }) {
+  return {
+    context: path.resolve(__dirname, 'src/main'),
+    entry: './index.js',
+    output,
+    plugins,
+    devServer,
+    resolve: {
+      extensions: ['.js', '.jsx']
+    },
+    module: {
+      rules
+    },
+    devtool: env.production ? false : 'eval-sourcemap'
+  };
 }
