@@ -1,6 +1,8 @@
 /**
- * 2020 Raveneyex's Front-End Base Project
- * MIT License
+ * Raveneyex's 2020 Front-End Stack
+ * Made by @raveneyex
+ * 
+ * Hail Satan!
  */
 
 const path = require('path');

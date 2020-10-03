@@ -1,3 +1,10 @@
+/**
+ * Raveneyex's 2020 Front-End Stack
+ * Made by @raveneyex
+ * 
+ * Hail Satan!
+ */
+
 import { createReducerFromActionMap } from '../../utils/reduxUtils';
 import { APP_CHANGE_MESSAGE, APP_RESET_MESSAGE } from './appActions';
 

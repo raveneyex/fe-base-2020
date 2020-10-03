@@ -11,7 +11,6 @@ A simple front-end base project using my preferred stack as of 2020.
 * Scss
 
 ## ToDo:
-* Add Router
 * Add License Headers
 * Add Tests infrastructure
 * Optimize Bundles

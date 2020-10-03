@@ -1,3 +1,10 @@
+/**
+ * Raveneyex's 2020 Front-End Stack
+ * Made by @raveneyex
+ * 
+ * Hail Satan!
+ */
+
 import { connect } from 'react-redux';
 
 import App from './App';

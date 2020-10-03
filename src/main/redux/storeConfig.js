@@ -1,3 +1,10 @@
+/**
+ * Raveneyex's 2020 Front-End Stack
+ * Made by @raveneyex
+ * 
+ * Hail Satan!
+ */
+
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { routerMiddleware } from 'connected-react-router'

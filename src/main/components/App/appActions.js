@@ -1,3 +1,10 @@
+/**
+ * Raveneyex's 2020 Front-End Stack
+ * Made by @raveneyex
+ * 
+ * Hail Satan!
+ */
+
 import { noPayloadActionCreator } from '../../utils/reduxUtils';
 
 // action types
