@@ -5,7 +5,7 @@ export default {
     'jasmine': true
   },
   'globals': {
-    module: tr
+    module: true
   },
   'extends': [
     'eslint:recommended',

@@ -26,7 +26,10 @@ const devServer = {
 
 // Plugins list
 const plugins = [
-  new HtmlWebpackPlugin({ template: 'index.html' }),
+  new HtmlWebpackPlugin({
+    template: 'index.html',
+    favicon: 'assets/favicon.ico'
+  }),
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin({ filename: 'index.css' }),
 ];
