@@ -10,6 +10,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserPlugin = require('terser-webpack-plugin');
 
 // Output config
 const output = {
@@ -34,6 +36,7 @@ const plugins = [
   }),
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin({ filename: 'index.css' }),
+  new BundleAnalyzerPlugin()
 ];
 
 // File-loader config
@@ -80,20 +83,40 @@ const jsLoaderRule = {
 // Rules
 const rules = [fileLoaderRule, sassLoadersRule, jsLoaderRule];
 
+const baseConfig = {
+  context: path.resolve(__dirname, 'src/main'),
+  entry: './index.js',
+  output,
+  plugins,
+  devServer,
+  devtool: 'eval-sourcemap',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
+  module: {
+    rules
+  },
+};
+
+const prodConfig = {
+  ...baseConfig,
+  devtool: false,
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: "node_vendors",
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all"
+        }
+      }
+    }
+  }
+};
+
 // Config object
 module.exports = function(env = { production: false }) {
-  return {
-    context: path.resolve(__dirname, 'src/main'),
-    entry: './index.js',
-    output,
-    plugins,
-    devServer,
-    resolve: {
-      extensions: ['.js', '.jsx']
-    },
-    module: {
-      rules
-    },
-    devtool: env.production ? false : 'eval-sourcemap'
-  };
-}
+  return env.production ? prodConfig : baseConfig;
+};
