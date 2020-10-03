@@ -9,9 +9,9 @@ A simple front-end base project using my preferred stack as of 2020.
 * React 16
 * Redux 4
 * Scss
+* JestEnzyme 
 
 ## ToDo:
-* Add Tests infrastructure
 * Optimize Bundles
 
 # Dedications

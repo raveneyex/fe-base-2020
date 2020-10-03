@@ -5,6 +5,5 @@
  * Hail Satan!
  */
 
-export default function sum(a, b) {
-  return a + b;
-}
+// allow jest to pass over scss imports without getting upset
+module.exports = {};
