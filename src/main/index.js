@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 
 import './index.scss';
 
-import reducers from './reduxConfig/reducers';
-import configureStore from './reduxConfig/storeConfig';
+import configureStore, { history } from './redux/storeConfig';
+import routes from './router/routes';
 
-import AppContainer from './components/App/AppContainer';
-
-const store = configureStore(reducers);
+const store = configureStore(/* provide initial state */);
 
 const ConnectedApp = () => (
   <Provider store={store}>
-    <AppContainer />
+    <ConnectedRouter history={history}>
+      { routes }
+    </ConnectedRouter>
   </Provider>
 );
 
